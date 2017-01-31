@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>Cadastro de título</title>
@@ -19,6 +19,10 @@
 </nav>
 
 <form class="form-horizontal" method="POST" action="/titulos">
+    <div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+        <span th:text="${mensagem}">Título salvo com sucesso!!!</span>
+    </div>
+
     <div class="panel panel-default">
         <div class="panel-heading">
             <h1 class="panel-title">Novo título</h1>
@@ -46,9 +50,8 @@
             <div class="form-group">
                 <label for="status" class="col-sm-2 control-label">Status</label>
                 <div class="col-sm-2">
-                    <select class="form-control">
-                        <option value="PENDENTE">Pendente</option>
-                        <option value="RECEBIDO">Recebido</option>
+                    <select class="form-control" name="status">
+                        <option th:each="status : ${todosStatusTitulo}" th:value="${status}" th:text="${status.descricao}"></option>
                     </select>
                 </div>
             </div>
