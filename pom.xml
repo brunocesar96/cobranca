@@ -50,13 +50,24 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.4.192</version>
-		</dependency>-->
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.38</version>
 		</dependency>
+
+		-->
+
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901-1.jdbc4</version>
+		</dependency>
+
 
 
 		<dependency>
@@ -76,6 +87,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Hibernate
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		-->
 
 	</dependencies>
 

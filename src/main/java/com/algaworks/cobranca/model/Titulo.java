@@ -25,8 +25,8 @@ public class Titulo {
     @Temporal(TemporalType.DATE)
     private Date dataVencimento;
 
-    @NumberFormat(pattern ="#,##0.00")
-    private BigDecimal valor;
+    //@NumberFormat(pattern ="#,##0.00")
+    private double  valor;
 
     //como String pois nao precisa de confirmação , por String
    @Enumerated(EnumType.STRING)
@@ -57,11 +57,11 @@ public class Titulo {
         this.dataVencimento = dataVencimento;
     }
 
-    public BigDecimal getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(BigDecimal valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
