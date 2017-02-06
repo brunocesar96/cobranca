@@ -16,10 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 
 
-/**
- * Created by bruno on 29/01/17.
- */
-
 @Controller
 @RequestMapping("/titulos")
 public class TituloController {
@@ -49,6 +45,13 @@ public class TituloController {
         ModelAndView mv = new ModelAndView("CadastroTitulo");
         mv.addObject("mensagem","Título salvo com sucesso!");
         return mv;
+    }
+
+    @RequestMapping
+    public String pesquisar(){
+
+        return "PesquisaTitulos";
+
     }
 
     @ModelAttribute("todosStatusTitulo")
