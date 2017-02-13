@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,6 +26,8 @@ public class TituloController {
 
     //Titulo titulo;
 
+    private static final String CADASTRO_VIEW="CadastroTitulo";
+
     //Ja injeta o objeto pra gente , facilitando
     @Autowired
     private Titulos titulos;
@@ -32,7 +35,7 @@ public class TituloController {
     @RequestMapping("/novo")
     public ModelAndView novo(){
 
-        ModelAndView mv = new ModelAndView("CadastroTitulo");
+        ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
         mv.addObject(new Titulo());
 
         return mv;
@@ -45,7 +48,7 @@ public class TituloController {
         //TODO:Salvar no banco de dados
         if(errors.hasErrors()){
 
-            return "CadastroTitulo";
+            return CADASTRO_VIEW;
         }
 
         titulos.save(titulo);
@@ -63,6 +66,21 @@ public class TituloController {
         return mv;
 
     }
+    //Nao pode haver dois @RequestMapping iguais
+    // Mapear por codigo para edicao
+    @RequestMapping("{codigo}")
+    //O spring entende que pegara um objeto titulo através do seu codigo
+    public ModelAndView edicao(@PathVariable ("codigo") Titulo titulo){
+
+        //(Obs: Tambem funciona)Pegando o objeto com codigo=codigo e atribuindo ao titulo
+        //Titulo titulo = titulos.findOne(codigo);
+
+        ModelAndView mv= new ModelAndView(CADASTRO_VIEW);
+        mv.addObject(titulo);
+        return mv;
+
+    }
+
 
     @ModelAttribute("todosStatusTitulo")
     public List<StatusTitulo>todosStatusTitulo(){

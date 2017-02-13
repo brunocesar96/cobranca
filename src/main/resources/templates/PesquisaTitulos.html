@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:href="http://www.w3.org/1999/xhtml"
       layout:decorator="LayoutPadrao">
 
 <head>
@@ -40,6 +40,12 @@
                                   th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"></span>
                     </td>
                     <td class="text-center">
+                                                                <!--Missao do '@' e montar link's -->
+                        <a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+
+
                     </td>
 
                 </tr>
