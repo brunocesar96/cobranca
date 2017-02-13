@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,18 +41,17 @@ public class TituloController {
 
     // Post para /titulos , pegara dados da requisicao e ja transformara em titulo
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView salvar(@Validated Titulo titulo, Errors errors){
+    public String salvar(@Validated Titulo titulo, Errors errors , RedirectAttributes attributes){
         //TODO:Salvar no banco de dados
-        ModelAndView mv = new ModelAndView("CadastroTitulo");
         if(errors.hasErrors()){
 
-            return mv;
+            return "CadastroTitulo";
         }
 
         titulos.save(titulo);
-
-        mv.addObject("mensagem","Título salvo com sucesso!");
-        return mv;
+        //redirect para uma URL -> Apaga os campos salvos e redireciona para um novo endereço
+        attributes.addFlashAttribute("mensagem","Título salvo com sucesso!");
+        return "redirect:/titulos/novo";
     }
 
     @RequestMapping
