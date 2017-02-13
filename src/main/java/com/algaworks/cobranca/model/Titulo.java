@@ -1,7 +1,6 @@
 package com.algaworks.cobranca.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -30,10 +29,10 @@ public class Titulo {
     @Temporal(TemporalType.DATE)
     private Date dataVencimento;
 
-    //@NumberFormat(pattern ="#,##0.00")
+    @NumberFormat(pattern ="#,##0.00")
     @NotNull(message = "Valor não pode ser nulo")
     @DecimalMin(value = "0.01",message = "Valor não pode ser menor que 0,01")
-    private double  valor;
+    private BigDecimal valor;
 
     //como String pois nao precisa de confirmação , por String
    @Enumerated(EnumType.STRING)
@@ -64,11 +63,11 @@ public class Titulo {
         this.dataVencimento = dataVencimento;
     }
 
-    public double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
@@ -96,9 +95,9 @@ public class Titulo {
         return codigo.equals(titulo.codigo);
     }
 
-    @Override
+   /* @Override
     public int hashCode() {
         return codigo.hashCode();
-    }
+    }*/
 
 }
